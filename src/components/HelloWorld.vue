@@ -6,7 +6,7 @@ const redirectUrl = ref("");
 onMounted(() => {
     const csrfState = Math.random().toString(36).substring(2);
     const url = new URL(document.URL);
-    if (url.searchParams.has("access_token ")) {
+    if (url.searchParams.has("access_token")) {
         accessToken.value = url.searchParams.get("access_token");
     }
 
