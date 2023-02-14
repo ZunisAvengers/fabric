@@ -1,9 +1,10 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 const accessToken = ref("");
 const redirectUrl = ref("");
 
 onMounted(() => {
+    const csrfState = Math.random().toString(36).substring(2);
     const url = new URL(document.URL);
     if (url.searchParams.has("access_token ")) {
         accessToken.value = url.searchParams.get("access_token");
@@ -28,16 +29,18 @@ function sendRequest() {
 </script>
 
 <template>
-    <template v-if="accessToken">
-        <p>AccessToken:</p>
-        <h1>{{ accessToken }}</h1>
-        <button @click="copy">Copy</button>
-        <button @click="sendRequest">Send Request</button>
-    </template>
-    <template v-else>
-        <h2>Haven't AccessToken</h2>
-    </template>
-    <a :href="redirectUrl">
-        <button>auth</button>
-    </a>
+    <div>
+        <template v-if="accessToken">
+            <p>AccessToken:</p>
+            <h1>{{ accessToken }}</h1>
+            <button @click="copy">Copy</button>
+            <button @click="sendRequest">Send Request</button>
+        </template>
+        <template v-else>
+            <h2>Haven't AccessToken</h2>
+        </template>
+        <a :href="redirectUrl">
+            <button>auth</button>
+        </a>
+    </div>
 </template>
