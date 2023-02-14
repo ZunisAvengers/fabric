@@ -11,11 +11,11 @@ onMounted(() => {
     }
 
     const redirect = new URL("https://www.tiktok.com/auth/authorize/");
-    url.searchParams.append("client_key", "aw70ajbbxwn1leb6");
-    url.searchParams.append("scope", "");
-    url.searchParams.append("redirect_uri", "http://localhost:3000/auth");
-    url.searchParams.append("state", csrfState);
-    url.searchParams.append("response_type", "code");
+    redirect.searchParams.append("client_key", "aw70ajbbxwn1leb6");
+    redirect.searchParams.append("scope", "");
+    redirect.searchParams.append("redirect_uri", document.baseURI);
+    redirect.searchParams.append("state", csrfState);
+    redirect.searchParams.append("response_type", "code");
     redirectUrl.value = redirect.toString();
 });
 
